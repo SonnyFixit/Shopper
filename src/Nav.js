@@ -1,37 +1,54 @@
 import React from 'react';
 
-const Nav = () =>
-(
-    
+const Nav = ({activeTab, onTabChange}) => 
+{
+
+
+    const itemClass = tabName =>
+    `App-nav-item ${
+        activeTab === tabName ? 'selected' : ''
+
+    }`;
+
+    return (
     <nav className = "App-nav">
 
         <ul>
 
-            <li className = "App-nav-item">
+            <li className = {itemClass('items')}>
 
-                <button>Item</button>
-
-
-            </li>
-
-            <li className = "App-nav-item">
-
-                <button>Cart</button>
+                <button onClick = {() => onTabChange ('items')}> Items 
+                
+                </button>
 
 
             </li>
 
+       
+            <li className = "App-nav-item">
 
-        </ul>
-
-
-
-
+                <button nOnClick = {() => onTabChange('cart')}> Cart </button>
 
 
+       
+            </li>
 
-    </nav>
 
-);
+       
+            </ul>
+
+
+
+
+
+
+
+    
+        </nav>
+
+    );
+
+
+};
 
 export default Nav;
