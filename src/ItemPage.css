@@ -1,0 +1,11 @@
+.ItemPage-items
+{
+    margin: 0;
+    padding: 0;
+}
+
+.ItemPage-item li
+{
+    list-style-type: armenian;
+    margin-bottom: 40px;
+}

@@ -1,12 +1,10 @@
 import React from 'react';
 
-const Nav = ({activeTab, onTabChange}) => 
-{
-
-
-    const itemClass = tabName =>
+const Nav = ({activeTab, onTabChange}) => {
+    
+    const itemClass = (tabName) =>
     `App-nav-item ${
-        activeTab === tabName ? 'selected' : ''
+        (activeTab === tabName) ? 'selected' : ''
 
     }`;
 
@@ -17,36 +15,23 @@ const Nav = ({activeTab, onTabChange}) =>
 
             <li className = {itemClass('items')}>
 
-                <button onClick = {() => onTabChange ('items')}> Items 
-                
-                </button>
-
+                <button onClick = {() => onTabChange ('items')}> Items </button>
 
             </li>
 
        
-            <li className = "App-nav-item">
+            <li className = {itemClass('cart')}>
 
-                <button nOnClick = {() => onTabChange('cart')}> Cart </button>
+                <button onClick = {() => onTabChange('cart')}> Cart </button>
 
-
-       
             </li>
 
-
-       
-            </ul>
-
-
-
-
-
-
+        </ul>
 
     
         </nav>
 
-    );
+    )
 
 
 };

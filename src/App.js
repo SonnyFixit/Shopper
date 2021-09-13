@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
+import ItemPage from './ItemPage';
+import { items } from './static-data';
 import Nav from './Nav.js';
 
 
@@ -42,11 +44,12 @@ const Content = ({tab}) =>
   switch(tab)
   {
     
-    default:
       case 'items':
-        return <span> The Items </span>
+        return <ItemPage items = {items} />;
       case 'cart':
         return <span> The Cart </span>
+      default:
+        break;
 
 
 
@@ -54,6 +57,6 @@ const Content = ({tab}) =>
 
   }
 
-}
+};
 
 export default App;
