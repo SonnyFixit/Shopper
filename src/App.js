@@ -10,6 +10,16 @@ const App = () =>
 {
 
   const [activeTab, setActiveTab] = useState('items');
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (item) => 
+  {
+
+    setCart(prevCart => [...prevCart, item])
+
+
+
+  }
 
 
   return (
@@ -24,9 +34,16 @@ const App = () =>
       
       />
 
+      <div>
+
+      {cart.length} items
+
+
+      </div>
+
       <main className = "App-content">
 
-        <Content tab = {activeTab}/>
+        <Content tab = {activeTab} onAddToCart= {addToCart}/>
 
       </main>
 
@@ -37,7 +54,7 @@ const App = () =>
 
 };
 
-const Content = ({tab}) =>
+const Content = ({tab, onAddToCart}) =>
 {
 
 
@@ -45,7 +62,7 @@ const Content = ({tab}) =>
   {
     
       case 'items':
-        return <ItemPage items = {items} />;
+        return <ItemPage items = {items} onAddToCart = {onAddToCart} />;
       case 'cart':
         return <span> The Cart </span>
       default:

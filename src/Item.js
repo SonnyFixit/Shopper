@@ -32,7 +32,7 @@ const Item = ({item, onAddToCart}) =>
 
 );
 
-Item.PropTypes = 
+Item.propTypes = 
 {
     item:PropTypes.object.isRequired,
     onAddToCart: PropTypes.func.isRequired
