@@ -18,7 +18,9 @@
 
 .Item-title 
 {
-  font-weight: bold;
+  font-weight: bolder;
+  background: linear-gradient(beige,grey);
+  outline-style: ridge;
   margin-bottom: 50px;
 }
 
@@ -31,7 +33,7 @@
 
 .Item-addToCart 
 {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   font-size: 14px;
   border: 2px solid black;
   background-color: beige;
@@ -41,7 +43,7 @@
 
 .Item-addToCart:hover 
 {
-  background-color: #FFDDB2;
+  background-color: #e7f156;
 }
 
 .Item-addToCart:active 
@@ -49,6 +51,7 @@
   background-color: #ED8400;
   color: #fff;
   outline: black;
+
 }
 
 .Item-addToCart:focus 

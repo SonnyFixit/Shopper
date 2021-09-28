@@ -3,7 +3,29 @@ import './App.css';
 import ItemPage from './ItemPage';
 import { items } from './static-data';
 import Nav from './Nav.js';
+import CartPage from './CartPage';
 
+
+const summarizeCart =(cart) => 
+
+{
+
+  const groupItems = cart.reduce((summary, item) =>
+  {
+    summary[item.id] = summary[item.id] || 
+    {
+      ...item,
+      count: 0
+    }
+
+    summary[item.id].count++;
+
+    return summary;
+  }, {});
+
+  return Object.values(groupItems);
+
+};
 
 const App = () => 
 
@@ -43,7 +65,8 @@ const App = () =>
 
       <main className = "App-content">
 
-        <Content tab = {activeTab} onAddToCart= {addToCart}/>
+        <Content tab = {activeTab} onAddToCart= {addToCart}
+        cart = {summarizeCart(cart)}/>
 
       </main>
 
@@ -54,7 +77,7 @@ const App = () =>
 
 };
 
-const Content = ({tab, onAddToCart}) =>
+const Content = ({tab, onAddToCart, cart}) =>
 {
 
 
@@ -64,7 +87,7 @@ const Content = ({tab, onAddToCart}) =>
       case 'items':
         return <ItemPage items = {items} onAddToCart = {onAddToCart} />;
       case 'cart':
-        return <span> The Cart </span>
+        return <CartPage item = {cart}/>
       default:
         break;
 
