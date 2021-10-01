@@ -7,12 +7,15 @@ const Item = ({item, children}) =>
 
 <div className = "Item">
     <div className = "Item-left">
+    <div className ="Item-image"/>
     <div className = "Item-title">
         {item.name}
     </div>
 
     <div className = "Item-description">
         {item.description}
+    </div>
+
     </div>
 
     <div className = "Item-right">
@@ -27,7 +30,7 @@ const Item = ({item, children}) =>
 
     </div>
 
-</div>
+
 
 );
 
