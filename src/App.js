@@ -29,19 +29,36 @@ const App = () =>
     const addToCart = item => 
     {
         setCart(prevCart => [...prevCart, item]);
-    }
-
-    const removeItem = item => 
-    {
-        let index = cart.findIndex(i => i.id === item.id);
-        if (index >= 0) {
-            setCart(cart => {
-                const copy = [...cart];
-                copy.splice(index,1);
-                return copy;
-            });
-        }
     };
+
+ /**
+     * Removes an item from the cart.
+     * If 'removeAll' is true, removes all instances of the item.
+     * Otherwise, decrements the quantity by one. If the item quantity is 1, it removes the item completely.
+     * @param {object} item - The item to remove.
+     * @param {boolean} removeAll - Flag to indicate removal of all instances of the item.
+     */
+  const removeItem = (item, removeAll = false) => 
+  {
+    setCart(currentCart => {
+        if (removeAll) 
+        {
+            return currentCart.filter(i => i.id !== item.id);
+        } 
+        else 
+        {
+            const index = currentCart.findIndex(i => i.id === item.id);
+            if (index !== -1) 
+            {
+                let newCart = [...currentCart];
+                newCart.splice(index, 1);
+                return newCart;
+            }
+
+            return currentCart;
+        }
+    });
+};
 
 
     return (
@@ -61,15 +78,22 @@ const App = () =>
 };
 
 const Content = ({tab , onAddToCart, cart, onRemoveItem}) => {
-    
-  switch (tab) {
-        
-    default:
+    switch (tab) {
         case 'items':
-            return <ItemPage items={items} onAddToCart={onAddToCart}/>
+            return <ItemPage items={items} onAddToCart={onAddToCart} />;
         case 'cart':
-            return <CartPage items={cart} onAddOne={onAddToCart} onRemoveOne={onRemoveItem}/>           
+            return (
+                <CartPage 
+                    items={cart} 
+                    onAddOne={onAddToCart} 
+                    onRemoveOne={item => onRemoveItem(item, false)}  // Single item removal
+                    onRemoveAll={item => onRemoveItem(item, true)}  // Remove all instances
+                />
+            );
+        default:
+            return <ItemPage items={items} onAddToCart={onAddToCart} />;
     }
 };
+
 
 export default App;
